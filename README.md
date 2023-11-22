@@ -11,5 +11,4 @@ Aggregators all the contributors with the commits from respective Repository
  - Flask web framework.
  - GitHub RestAPI.
  - HTML,CSS,JS(Web Design).
- 
-[Live](https://amullyapatil.github.io/Github-Aggregator/Home page)
+  - [Live](https://amullyapatil.github.io/Github-Aggregator/Home page)
