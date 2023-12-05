@@ -17,7 +17,7 @@
     font-family: 'Poppins', sans-serif;
     }
     form.form{
-        font-size:30px; 
+        font-size:30px;
     }
     h1{
         font-size:50px;
@@ -33,14 +33,39 @@
     ul{
         margin-left:10.0%;
       }
-      hr { 
+      hr {
         display: block;
         margin-left: auto;
-        margin-right: 85%;
+        margin-right: 55%;
         border-width: 1px;
-      } 
+      }
+      input{
+        padding: 4px 10px;
+        border-width: 2px;
+        border-color:black;
+      }
+      img{
+        height:500px;
+        width:500px;
+      }
+      .firstSection{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 130px 0;
+        }
+        .firstSection > div{
+        width: 30%;
+        }
+        .rightSection img{
+        width: 40%;
+        position: absolute;
+        top: 300px;
+        left: 850px;
+        }
+
 </style>
-<body background-image="gitbg.png">
+<body>
     <br>
     <br>
     <br>
@@ -48,38 +73,52 @@
     <br>
     <br>
     <br>
+
     <form class="form" action="/" method="post" style="margin:auto;max-width:500px">
         <label for="username">GitHub Username:</label>
         <input type="text" placeholder="Enter GitHub username" id="username" name="username" required>
         <br>
-
         <label for="repository">Repository Name :</label>
         <input type="text" placeholder="Enter Repository name" id="repository" name="repository" required>
 
         <button type="submit">Submit</button>
     </form>
 
-    <!-- Display the contributor information if available -->
-    {% if contributor_count is defined %}
-        <h2 class="a1">Total Contributors: {{ contributor_count }}</h2>
-        <h3 class="a2">Contributors:</h3><br>
-        <ul>
-            {% for contributor in contributors %}
-            <br>
-                <li>
-                    <strong>{{ contributor['login'] }}</strong>
+
+    <section class="firstSection">
+        <div class="leftSection">
+
+            <!-- Display the contributor information if available -->
+            {% if contributor_count is defined %}
+                <h2 class="a1">Total Contributors: {{ contributor_count }}</h2>
+                <h3 class="a2">Contributors:</h3><br>
+                <ul>
+                    {% for contributor in contributors %}
                     <br>
-                    Contributions (commits) : {{ contributor['contributions'] }}
-                </li>
-                <hr>
-            {% endfor %}
-        </ul>
+                        <li>
+                            <strong>{{ contributor['login'] }}</strong>
+                            <br>
+                            Contributions (commits) : {{ contributor['contributions'] }}
+                        </li>
+                        <hr>
+                    {% endfor %}
+                </ul>
+          <!--<img src="https://octodex.github.com/images/Fintechtocat.png" alt="" >-->
+            {% endif %}
+        
+            <!-- Display error message if there's an error -->
+            {% if error is defined %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+        
+        </div>
+        </div>
+        <div class="rightSection">
+        <img src="https://octodex.github.com/images/Fintechtocat.png" alt="" >
+        </div>
+        </section>
 
-    {% endif %}
 
-    <!-- Display error message if there's an error -->
-    {% if error is defined %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+ 
 </body>
 </html>
